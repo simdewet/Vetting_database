@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+{% block title %} Field {{field_ID}}{% endblock title %}
+
+{% block content %}
+<h3>Matching pairs of transients for field {{ field_ID }}</h3>
+<p>The table below shows all the matching pairs of transients for field {{ field_ID }}, sorted by column <i>Mag 1</i> (brightest at the top). Note that the coordinates displayed here are the average of the sources' coordinates in both transient files. Clicking on the linked unique ID will open the actual vetting page where the user can determine if the transient should be added to a catalogue of possible real transients. The four images shown in each row are (from L to R) the reduced image, the reference image, the difference image, and Scorr image. </p>
+{% render_table table %}
+<a href="/vetting/" class="btn btn-info" role="button">Go back</a>
+
+{% endblock content %}

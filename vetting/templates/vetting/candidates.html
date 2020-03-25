@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+{% block title %}Candidates{% endblock title %}
+
+{% block content %}
+<h3>Transient candidates</h3>
+<p>The table below shows all the transient candidates selected by the user, with links to their images.</p>
+{% render_table table %}
+<a href="/vetting/" class="btn btn-info" role="button">Go back</a>
+
+{% endblock content %}

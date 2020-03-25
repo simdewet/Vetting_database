@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}ID {{entry.pk}} {% endblock title %}
+
+{% block content %}
+<h3>Pair with ID {{ entry.pk }} and coordinates {{ entry.coords }} in <code>Transient_files</code> database</h3>
+<p>If you think this pair of matching transients is a possible transient (or variable), click the <i>Add to catalogue</i> button. </p>
+<img src="{{ entry.img.url }}" width=90%>
+<div>
+<!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add to catalogue</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add to catalogue</h4>
+        </div>
+        <div class="modal-body">
+          <p>Add the coordinates and filenames of this pair of matching transients to a master catalogue?</p>
+        </div>
+        <div class="modal-footer">
+          <form action="/vetting/{{ entry.field_ID }}/{{ entry.pk }}/" method="POST">{% csrf_token %}
+          	<input type="submit" name="pair_id" value="Add" class="btn btn-default pull-left" role="button">
+          </form>	
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<a href="/vetting/{{ entry.field_ID }}/{{ previous_id }}/" class="btn btn-info" role="button">Previous</a>
+<a href="/vetting/{{ entry.field_ID }}/{{ next_id }}/" class="btn btn-info" role="button">Next</a>
+<a href="/vetting/{{ entry.field_ID }}/" class="btn btn-info" role="button">Go back</a>
+</div>
+{% endblock content %}
+
+
+

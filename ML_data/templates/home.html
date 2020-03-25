@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block content %}
+<style>
+.marginauto {
+	margin: 10px auto 20px;
+	display: block;
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  width: 45%;
+}
+</style>
+
+<h1>Transient Vetting of MeerLICHT Data on S190814bv <br><small>A web interface created by Simon de Wet</small></br></h1>
+<p>On the 14<sup>th</sup> of August 2019, a GW event was detected by the LIGO/Virgo Collaboration. The event was given the name S190814bv, and was significant for a number of reasons. Firstly, it was incredibly well-localized for a GW event: the 90% probability region had an area of 23 deg<sup>2</sup>. Secondly, the false alarm rate was extremely low at 1 event per every 10<sup>25</sup> years. Lastly, the event was believed to be caused by a neutron star - black hole merger. Observing such a merger would have been a major breakthrough. </p>
+<hr>
+<h3>MeerLICHT</h3>
+<p>The MeerLICHT optical telescope in Sutherland performed an intense observing campaign of the GW localization region, observing almost every night for a 10 day period after the event. A total of 16 fields (shown below) encompassed the 90% localization region, with each field being observed up to 3 times in a night, in each of the <i>u, q</i> and <i>i</i> bands. Due to vignetting caused by the dome malfunctioning, a large fraction of the observations had to be excluded from our transient analysis. </p>
+<figure class="figure" >
+	<img class="marginauto" src="{% static 'updated_ML_fields.png' %}" alt="">
+	<figcaption class="figure-caption text-center">The 16 observed fields with their IDs are shown with the GW probability localization.</figcaption>
+</figure>
+<h3>Transients</h3>
+<p>This web interface was designed to allow a user to manually vet transients detected in the usable transient files produced by BlackBOX and ZOGY. Go to the Vetting tab to start vetting transients!</p>
+{% endblock content %}
