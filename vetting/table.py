@@ -22,13 +22,4 @@ class Transient_filesTable(tables.Table):
 		model = Transient_files
 		template_name = "django_tables2/bootstrap.html"
 		fields = ("ID", "date_observed", "coords", "file_1", "file_2", "filter_1", "filter_2", "scorr_1", "scorr_2", "mag_1", "mag_2")   
-
-class CandidatesTable(tables.Table):
-	# Add linked column showing row number
-	ID = tables.LinkColumn("vetting:candidates_image", text=lambda Transient_files: Transient_files.pk, args=[A("pk")]) # first argument is name of url to go to
-
-	# Table properties
-	class Meta:
-		model = Transient_files
-		template_name = "django_tables2/bootstrap.html"
-		fields = ("ID", "field_ID", "date_observed", "coords", "file_1", "file_2", "filter_1", "filter_2", "scorr_1", "scorr_2", "mag_1", "mag_2")   
+  

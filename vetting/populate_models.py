@@ -1,3 +1,4 @@
+from vetting.models import Transient_fields, Transient_files
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.visualization import astropy_mpl_style
@@ -6,7 +7,6 @@ from astropy.io import fits
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 from astropy.wcs import WCS
-from astropy.wcs.utils import skycoord_to_pixel
 from astropy.nddata import Cutout2D
 import sys
 import glob
@@ -34,6 +34,7 @@ def image(file,filter,type,coords, new_fields_entry):
 
 # Make 2 x 4 plot using image function
 def plot_image(file1, file2, filter1, filter2, coords1, coords2, new_fields_entry):
+	plt.close()
 	figure = io.BytesIO()
 	startTime = datetime.now() # Start timer
 	red1 = image(file1,filter1,'red',coords1, new_fields_entry)[0]
@@ -86,10 +87,10 @@ def plot_image(file1, file2, filter1, filter2, coords1, coords2, new_fields_entr
 	plt.savefig(figure, format='png', dpi=300)
 	return figure
 
-def populate_models(directory):
+def populate_models(directory):	
 	# Delete existing data in database so we don't get duplicates everytime we runserver
-	Transient_fields.objects.all().delete()
-	Transient_files.objects.all().delete()
+	#Transient_fields.objects.all().delete()
+	#Transient_files.objects.all().delete()
 	
 	# Populate Transient_fields database
 	for field in glob.glob(directory): # Use '/Users/simdewet/Desktop/matching_pairs/*
@@ -127,9 +128,9 @@ def populate_models(directory):
 					coords = "(%.5f, %.5f)" % ((ra1+ra2)*.5,(dec1+dec2)*.5)
 					c1 = SkyCoord(ra1, dec1, frame="icrs", unit="deg"); c2 = SkyCoord(ra2, dec2, frame="icrs", unit="deg")
 					new_files_entry = Transient_files.objects.create(field_ID=new_fields_entry, file_1=file_1, file_2=file_2, filter_1=filter_1, filter_2=filter_2, scorr_1=scorr_1, scorr_2=scorr_2, mag_1=mag_1, mag_2=mag_2, date_observed=date_observed, coords=coords)
-					new_files_entry.img.save('vetting.png', plot_image(filename1, filename2, filter_1, filter_2, c1, c2, new_fields_entry))
+					new_files_entry.img.save('vetting.', plot_image(filename1, filename2, filter_1, filter_2, c1, c2, new_fields_entry))
 
-populate_models('/Users/simdewet/Desktop/matching_pairs_12/*')
+populate_models('/Users/simdewet/Desktop/matching_pairs_10/*')
 
 
 

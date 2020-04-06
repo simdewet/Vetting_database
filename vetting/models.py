@@ -22,17 +22,17 @@ class Transient_files(models.Model):
 	scorr_2 = models.CharField('Scorr 2', max_length=10, null=True)
 	mag_1 = models.CharField('Mag 1', max_length=10, null=True)
 	mag_2 = models.CharField('Mag 2', max_length=10, null=True)
+	dt_1 = models.CharField('\u0394t_1 (days)', max_length=10, null=True)
+	dt_2 = models.CharField('\u0394t_2 (days)', max_length=10, null=True)
 	date_observed = models.CharField('Date-observed', max_length=2, default='')
 	coords = models.CharField('Coordinates (degrees)', max_length=50, default='')
-	img = models.ImageField(blank=True, null=True,upload_to='vetting/')
-
-
-	class Meta:
-		ordering = ['date_observed']
-
+	img = models.ImageField(blank=True, null=True, upload_to='vetting/')
 
 	def __str__(self):
 		return self.pk
+
+
+
 
 
 

@@ -2,13 +2,13 @@
 {% block title %} ID {{entry.pk}} {% endblock title %}
 
 {% block content %}
-<h3>Pair with ID {{ entry.pk }} and coordinates {{ entry.coords }} in <code>Transient_files</code> database</h3>
-<p>Possible transient candidate pair as selected by user. </p>
-<img src="{{ entry.img.url }}" width=90%>
+<h3>Pair with ID {{ entry.Transient_file.pk }} and coordinates ({{ coords }}) in <code>Transient_files</code> database</h3>
+<p>Possible transient candidate pair as selected by user. The four images shown in each row are (from L to R) the reduced image, the reference image, the difference image, and Scorr image. The time difference in days between when the reference and reduced images were observed is given as &Delta;t_1 = {{ entry.Transient_file.dt_1 }} for the first set of images and &Delta;t_2 = {{ entry.Transient_file.dt_2 }} for the second set of images.</p>
+<img src="{{ entry.Transient_file.img.url }}" width=90%>
 <div>
-<a href="/vetting/candidates/{{ previous_id }}/" class="btn btn-info" role="button">Previous</a>
-<a href="/vetting/candidates/{{ next_id }}/" class="btn btn-info" role="button">Next</a>
-<a href="/vetting/candidates/" class="btn btn-info" role="button">Go back</a>
+<a href="/candidates/{{ previous_id }}/" class="btn btn-info" role="button">Previous</a>
+<a href="/candidates/{{ next_id }}/" class="btn btn-info" role="button">Next</a>
+<a href="/candidates/" class="btn btn-info" role="button">Go back</a>
 </div>
 {% endblock content %}
 

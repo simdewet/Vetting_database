@@ -4,10 +4,9 @@
 
 {% block content %}
 <h3>How to perform the transient vetting</h3>
-<p>Presently, sources having an absolute Scorr value greater than 6 are included in the transient catalogues. In order to reduce the number of bogus transients we need to vet, I've ensured that only sources with an absolute Scorr value greater than 12 should be included. Furthermore, I haved added the selection criteria that a transient must be observed at least twice on a particular night regardless of filter, resulting in a "matching pair". All of the matching pairs - across all the fields - have been added to a database based on the model <code>Transient_files</code>. Each matching pair has its own unique ID. Select a field in the table below to see a table of all of the matching pairs of transients found in that field. Go back to the Home page to see where each field is located in relation to the GW localization. The dates listed below are the observing dates of the nights in August 2019.</p>
+<p>Presently, sources having an absolute Scorr value greater than 6 are included in the transient catalogues. In order to reduce the number of bogus transients we need to vet, I've ensured that only sources with an absolute Scorr value greater than 12 should be included. Furthermore, I haved added the selection criteria that a transient must be observed at least twice on a particular night regardless of filter, resulting in a "matching pair". All of the matching pairs - across all the fields - have been added to a database based on the model <code>Transient_files</code>. Each matching pair has its own unique ID. Select a field in the table below to see a table of all of the matching pairs of transients found in that field. Go back to the <i>Home</i> page to see where each field is located in relation to the GW localization. The dates listed below are the observing dates of the nights in August 2019.</p>
 
-<p>Once candidates have been selected, a table of those selected can be viewed by clicking the button <i>View table of selected candidates</i> at the bottom of this page.</p>
+<p>Once candidates have been selected, click on the <i>Candidates</i> tab at the top of the page for more information on the selected candidates</p>
 {% render_table table %}
 
-<a href="/vetting/candidates/" class="btn btn-info" role="button">View table of selected candidates</a>
 {% endblock content %}

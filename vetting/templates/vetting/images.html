@@ -3,17 +3,17 @@
 
 {% block content %}
 <h3>Pair with ID {{ entry.pk }} and coordinates {{ entry.coords }} in <code>Transient_files</code> database</h3>
-<p>If you think this pair of matching transients is a possible transient (or variable), click the <i>Add to catalogue</i> button. </p>
+<p>If you think this pair of matching transients is a possible transient (or variable), click the <i>Add to catalogue</i> button. The four images shown in each row are (from L to R) the reduced image, the reference image, the difference image, and Scorr image. The time difference in days between when the reference and reduced images were observed is given as &Delta;t_1 = {{ entry.dt_1 }} days for the first set of images and &Delta;t_2 = {{ entry.dt_2 }} days for the second set of images. </p>
+{% if entry.img %}
 <img src="{{ entry.img.url }}" width=90%>
+{% endif %}
 <div>
-<!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add to catalogue</button>
+<!--  
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add to catalogue</button>
 
-  <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -31,7 +31,18 @@
       </div>
       
     </div>
-  </div>
+  </div> 
+-->
+{% if entry.pk not in candidate_list %}
+<form action="/vetting/{{ entry.field_ID }}/{{ entry.pk }}/" method="POST" id="form1">{% csrf_token %}</form>
+<button class="btn btn-success" role="button" type="submit" name="pair_id" form="form1" value="Add">Add</button>
+{% endif %}
+
+{% if entry.pk in candidate_list %}
+<form action="/vetting/{{ entry.field_ID }}/{{ entry.pk }}/" method="POST" id="form1">{% csrf_token %}</form>
+<button class="btn btn-danger" role="button" type="submit" name="pair_id" form="form1" value="Remove">Remove</button>
+{% endif %}
+
 <a href="/vetting/{{ entry.field_ID }}/{{ previous_id }}/" class="btn btn-info" role="button">Previous</a>
 <a href="/vetting/{{ entry.field_ID }}/{{ next_id }}/" class="btn btn-info" role="button">Next</a>
 <a href="/vetting/{{ entry.field_ID }}/" class="btn btn-info" role="button">Go back</a>
