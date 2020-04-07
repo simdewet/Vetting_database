@@ -7,8 +7,6 @@ from vetting.models import Transient_files
 from .models import Candidates
 from .table import CandidatesTable
 
-from vetting.views import candidate_list
-
 candidate_list = [556, 558, 496, 559, 2634, 2660, 2711, 2712, 2709, 2749, 2734, 2715, 2718, 2742, 2735, 2717, 2569, 2545, 2608, 2542, 2554, 1784, 1820, 418, 286, 295, 373, 266, 438, 77, 177, 696, 1007, 1070, 1209, 995, 1051, 1108, 1781, 1427, 1757, 1740, 1496, 987, 729, 964, 982, 797, 1417, 1274, 1425, 1405, 2200, 2210, 2016, 2128, 2493, 2357, 2454, 1889]
 
 def candidates(request):

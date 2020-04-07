@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from next_prev import next_in_order, prev_in_order
 
 from .models import Transient_files, Transient_fields
-from .table import Transient_filesTable, Transient_fieldsTable 
+from .table import Transient_filesTable, Transient_fieldsTable, CandidatesTable 
 
 candidate_list=[]
 
@@ -45,6 +45,11 @@ def image_view(request, field_ID, ID):
 		candidate_list.remove(entry.pk)
 
 	return render(request, 'vetting/images.html', {'entry': entry, 'next_id': next_id, 'previous_id': previous_id, 'coords': coords, 'candidate_list': candidate_list})
+
+def candidates_view(request):
+	table = CandidatesTable(Transient_files.objects.filter(pk__in=candidate_list).order_by('mag_1', 'pk')) # only show entries from field 'field_ID', and order by 'mag_1' column
+	return render(request, 'vetting/selected_candidates.html', {'table': table})
+
 
 
 
